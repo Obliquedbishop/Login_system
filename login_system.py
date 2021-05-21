@@ -1,4 +1,5 @@
 def login(email, password):
+    # checking the if the user exits or not
     success = False
     file = open("user_details.txt", "r")
     for credentials in file:
@@ -13,6 +14,7 @@ def login(email, password):
 
 
 def register(username, email, password):
+    # Adding the credentials to the text file
     file = open("user_details.txt" , 'a')
     file.write("\n"+username+","+email+";"+password)
     file.close()
@@ -20,7 +22,8 @@ def register(username, email, password):
 
 
 def email_check(email):
-
+    
+    # Checking the validity of the email id
     count_1 = 0
     for char in email:
         if char == "@":
@@ -45,6 +48,7 @@ def email_check(email):
     else:
         return "wrong"
 
+    # checking the existence of the email id
     success = False
     file = open("user_details.txt" , "r")
     for credentials in file:
@@ -61,9 +65,11 @@ def email_check(email):
 
 
 def password_check(password):
+    # checking the length of the password
     if len(password) < 15:
         return "short"
     else:
+        # checking the strength of the password
         from suggest_password import check
         if check(password) == "weak":
             return "weak"
